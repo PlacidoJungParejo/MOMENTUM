@@ -21,8 +21,12 @@ exports.authenticate = (req,res,next) => {
             if(err){
                 next(new AppError("Token inválida",401))
             }else{
-                req.user = decoded.userData; // Guardar datos en req.user
-                console.log(req.user)
+                req.user = decoded.userData;
+                // Actualizar la sesión con los datos del usuario
+                req.session.userLogued = {
+                    data: decoded.userData,
+                    token: token
+                };
                 next()
             }
         })
@@ -40,12 +44,20 @@ exports.createJWT = (userData) => {
         console.log(token);
         return token;
     } catch (error) {
-        throw new AppError(error.message, 500); // Usa throw en lugar de next
+        throw new AppError(error.message, 500); 
     }
 };
 
 exports.destroyJWT = (req) => {
-    const result = jwt.sign(req.session.userLogued.token,"", {expiresIn:1},(logout,err) => {
-        return true
-    })   
+    try {
+        if (req.session && req.session.userLogued) {
+            // Invalidar el token
+            jwt.sign({}, process.env.SECRET_JWT, { expiresIn: 1 });
+            return true;
+        }
+        return false;
+    } catch (error) {
+        console.error('Error al destruir JWT:', error);
+        return false;
+    }
 }

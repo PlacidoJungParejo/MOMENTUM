@@ -1,0 +1,78 @@
+.create-form-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.create-form-header {
+  background-color: #1a1f2e;
+  color: white;
+  padding: 15px;
+  border-radius: 4px 4px 0 0;
+  margin: -20px -20px 20px -20px;
+}
+
+/* Estilos para los inputs */
+.form-control:focus {
+  border-color: #40E0D0;
+  box-shadow: 0 0 0 0.2rem rgba(64, 224, 208, 0.25);
+}
+
+/* Estilos para el select de rol */
+.form-select:focus {
+  border-color: #40E0D0;
+  box-shadow: 0 0 0 0.2rem rgba(64, 224, 208, 0.25);
+}
+
+/* Mensaje de error de contraseña */
+.text-danger {
+  font-size: 0.85em;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: rgba(255, 68, 68, 0.1);
+}
+
+/* Botón de submit */
+.btn-dark {
+  background-color: #1a1f2e;
+  border: none;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-dark:hover {
+  background-color: #40E0D0;
+  transform: translateY(-2px);
+}
+
+/* Animaciones */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.create-form-container {
+  animation: slideIn 0.3s ease;
+}
+
+/* Input groups */
+.input-group-text {
+  background-color: #1a1f2e;
+  color: white;
+  border: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .col-md-4 {
+    padding: 0 15px;
+  }
+}

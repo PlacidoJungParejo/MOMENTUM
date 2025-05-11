@@ -1,0 +1,184 @@
+/* Contenedor principal */
+.tasks-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 15px;
+}
+
+/* Cabecera de tareas */
+.tasks-header {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.tasks-actions {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.action-item {
+  margin-bottom: 15px;
+}
+
+.action-item:last-child {
+  margin-bottom: 0;
+}
+
+.action-item .btn {
+  width: 100%;
+}
+
+/* Estilos para la tabla */
+.tasks-table {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.tasks-table thead th {
+  background-color: #1a1f2e;
+  color: white;
+  padding: 15px;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+}
+
+.tasks-table tbody td {
+  vertical-align: middle;
+  padding: 12px;
+  text-align: center;
+}
+
+/* Botones de acción */
+.action-button {
+  margin: 0 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-edit {
+  background-color: #40e0d0;
+  border-color: #40e0d0;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #2cc1b1;
+  transform: scale(1.05);
+}
+
+.btn-delete {
+  background-color: #ff4444;
+  border-color: #ff4444;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+/* Estilos para las prioridades */
+.priority-alta {
+  background-color: #ff4444 !important;
+  color: white;
+}
+
+.priority-media {
+  background-color: #ffbb33 !important;
+  color: black;
+}
+
+.priority-baja {
+  background-color: #00c851 !important;
+  color: white;
+}
+
+/* Estilos para estados */
+.status-pendiente {
+  background-color: #ff9f43;
+  color: white;
+}
+
+.status-progreso {
+  background-color: #40e0d0;
+  color: white;
+}
+
+.status-completada {
+  background-color: #00c851;
+  color: white;
+}
+
+/* Estilos para las etiquetas */
+.task-tag {
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 2px;
+  border-radius: 12px;
+  background-color: #40e0d0;
+  color: white;
+  font-size: 0.9em;
+}
+
+/* Estilos para el filtro de etiquetas */
+.tag-filter {
+  padding: 8px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+}
+
+.tag-filter select {
+  border: 1px solid #40e0d0;
+  border-radius: 4px;
+  padding: 6px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tasks-table {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .tasks-container {
+    padding: 10px;
+  }
+
+  .tasks-actions {
+    padding: 10px;
+  }
+
+  .action-item {
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    width: 100% !important;
+  }
+
+  .table-responsive {
+    margin: 0;
+    padding: 0;
+  }
+
+  .tasks-table {
+    font-size: 0.9rem;
+  }
+
+  .tasks-table td,
+  .tasks-table th {
+    padding: 0.5rem;
+  }
+}

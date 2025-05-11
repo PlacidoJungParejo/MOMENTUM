@@ -5,6 +5,37 @@ const {wrapAsync} = require("../utils/functions"); //carga la función para mane
 const jwtMW = require("../middleware/jwt.mw"); //carga el middleware para manejar tokens JWT
 const AppError = require("../utils/AppError");
 
+//Funciones utiles
+function validarContrasena(password) {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&]{8,}$/;
+    return regex.test(password);
+}
+
+//Exports
+exports.registerUser = wrapAsync(async (req, res, next) => { // Crea un nuevo usuario
+    const userData = req.body;
+    if (!validarContrasena(userData.contrasena)) {
+        return next(new AppError("La contraseña no cumple con los requisitos (mínimo 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial)", 400));
+    }
+    const hashedPassword = await bcrypt.hash(userData.contrasena, 10); // Encriptar la contraseña
+    const newUser = {
+        nombre: userData.nombre,
+        correo: userData.correo,
+        usuario: userData.usuario,
+        contrasena: hashedPassword,
+        rol: "USER",
+        fecha_creacion: new Date(),
+        fecha_edicion: new Date()
+    };
+    await userModel.create(newUser, function (err, user) {
+        if (err) {
+            next(new AppError("Error al registrar el usuario", 500));
+        } else {
+            res.status(201).json(user);
+        }
+    });
+})
+
 exports.getAllUsers = wrapAsync(async (req, res, next) => {
     await userModel.findAll(function (err, users) {
         if (err) {
@@ -28,45 +59,6 @@ exports.getUserById = wrapAsync(async (req, res, next) => {
     });
 });
 
-exports.loginUser = wrapAsync(async (req, res, next) => {
-    const { usuario, contrasena } = req.body;
-    await userModel.login(usuario, contrasena, function (err, user) {
-        if (err) {
-            next(new AppError("Error al iniciar sesión", 500));
-        } else if (!user) {
-            next(new AppError("Usuario o contraseña incorrectos", 401));
-        } else {
-            const token = jwtMW.createJWT(user); // Generar token JWT
-            res.status(200).json({ user, token });
-        }
-    });
-})
-
-exports.logoutUser = wrapAsync(async (req, res, next) => {
-    req.session.destroy()
-    res.status(200).json({ message: "Sesión cerrada" });
-})
-
-exports.registerUser = wrapAsync(async (req, res, next) => {
-    const { nombre, correo, usuario, contrasena } = req.body;
-    const hashedPassword = await bcrypt.hash(contrasena, 10); // Encriptar la contraseña
-    const newUser = {
-        nombre,
-        correo,
-        usuario,
-        contrasena: hashedPassword,
-        rol: "USER",
-        fecha_creacion: new Date(),
-        fecha_edicion: new Date()
-    };
-    await userModel.create(newUser, function (err, user) {
-        if (err) {
-            next(new AppError("Error al registrar el usuario", 500));
-        } else {
-            res.status(201).json(user);
-        }
-    });
-})
 
 exports.updateUser = wrapAsync(async (req, res, next) => {
     const { id } = req.params;
@@ -97,4 +89,55 @@ exports.deleteUser = wrapAsync(async (req, res, next) => {
             res.status(200).json({ message: "Usuario eliminado" });
         }
     });
+})
+
+exports.loginUser = wrapAsync(async (req, res, next) => {
+    try {
+        const { usuario, contrasena } = req.body;
+
+        if (!usuario || !contrasena) {
+            return next(new AppError("Usuario y contraseña son requeridos", 400));
+        }
+
+        await userModel.login(usuario, async function (err, userFound) {
+            if (err) {
+                return next(new AppError(err, 400));
+            }
+
+            if (!userFound) {
+                return next(new AppError("Usuario y/o contraseña incorrectos", 401));
+            }
+
+            if (!userFound.contrasena) {
+                return next(new AppError("Error en los datos del usuario", 500));
+            }
+
+            try {
+                const validado = await bcrypt.compare(contrasena, userFound.contrasena);
+
+                if (validado) {
+                    const jwtToken = jwtMW.createJWT(userFound);
+                    
+                    const userLogued = {
+                        data: userFound,
+                        token: jwtToken
+                    };
+
+                    req.session.userLogued = userLogued;
+                    res.status(200).json(userLogued);
+                } else {
+                    return next(new AppError("Usuario y/o contraseña incorrectos", 401));
+                }
+            } catch (error) {
+                return next(new AppError("Error en la validación de la contraseña", 500));
+            }
+        });
+    } catch (error) {
+        return next(new AppError(error.message || "Error en la autenticación", 500));
+    }
+});
+
+exports.logoutUser = wrapAsync(async (req, res, next) => {
+    req.session.destroy()
+    res.status(200).json({ message: "Sesión cerrada" });
 })

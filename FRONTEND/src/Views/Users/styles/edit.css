@@ -1,0 +1,94 @@
+.edit-form-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.edit-form-header {
+  background-color: #1a1f2e;
+  color: white;
+  padding: 15px;
+  border-radius: 4px 4px 0 0;
+  margin: -20px -20px 20px -20px;
+}
+
+/* Campos del formulario */
+.form-control:focus,
+.form-select:focus {
+  border-color: #40E0D0;
+  box-shadow: 0 0 0 0.2rem rgba(64, 224, 208, 0.25);
+}
+
+/* Mensaje de validación de contraseña */
+.text-danger {
+  font-size: 0.85em;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: rgba(255, 68, 68, 0.1);
+}
+
+/* Loading state */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Botón de actualizar */
+.submit-button {
+  background-color: #1a1f2e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #40E0D0;
+  transform: translateY(-2px);
+}
+
+/* Iconos en inputs */
+.input-group-text {
+  background-color: #1a1f2e;
+  color: white;
+  border: none;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.edit-form-container {
+  animation: slideIn 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .col-md-4 {
+    padding: 0 15px;
+  }
+  
+  .edit-form-container {
+    margin: 10px;
+  }
+}

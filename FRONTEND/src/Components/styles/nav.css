@@ -1,0 +1,61 @@
+nav {
+    background-color: #4f5b7e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100vw;
+}
+
+nav button {
+    background-color: #1a1f2e;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+nav button:hover {
+    background-color: #00a2ff;
+}
+
+/* Estilos específicos para el logo */
+nav .navbar-brand img {
+    height: 2.5em;
+    transition: transform 0.2s ease;
+}
+
+nav .navbar-brand img:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos para los links de navegación */
+nav .nav-link {
+    color: #1a1f2e;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin: 0 0.3rem;
+}
+
+nav .nav-link:hover {
+    color: #ffffff;
+    background-color: #40E0D0;
+    font-weight: 500;
+}
+
+.nav-active {
+    color: #ffffff;
+    background-color: #00a2ff;
+    font-weight: 500;
+}
+
+/* Estilos existentes... */
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+    background-color: white !important;
+    border: 1px solid #dee2e6 !important;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+  }
+}

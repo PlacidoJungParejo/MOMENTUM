@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Nav from './Components/Nav'
+import Login from './Views/Login'
+import Register from './Views/Register'
+import ProtectedRoutes from './Components/ProtectedRoutes'
+import TasksIndex from "./Views/Tasks/Index";
+import UsersIndex from "./Views/Users/Index";
+import UsersCreate from "./Views/Users/Create";
+import UsersEdit from "./Views/Users/Edit";
+import TaskCreate from "./Views/Tasks/Create";
+import TaskEdit from "./Views/Tasks/Edit";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route element={<ProtectedRoutes />}>
+          {/* Tasks */}
+          <Route path="/" element={<Navigate to="/tasks" />} />
+          <Route path="/tasks" element={<TasksIndex />} />
+          <Route path="/tasks/create" element={<TaskCreate />} />
+          <Route path="/tasks/edit/:id" element={<TaskEdit />} />
+          {/* Users */}
+          <Route path="/users" element={<UsersIndex />} />
+          <Route path="/users/create" element={<UsersCreate />} />
+          <Route path="/users/edit/:id" element={<UsersEdit />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

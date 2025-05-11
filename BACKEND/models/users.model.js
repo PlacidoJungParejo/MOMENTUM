@@ -98,7 +98,7 @@ users.create = function (newUser, result) {
     });
 };
 
-users.login = function (usuario, contrasena, result) {
+users.login = function (usuario, result) {
     let connection = mysql.createConnection(dbConn);
     connection.connect(function (err) {
         if (err) {
@@ -106,21 +106,22 @@ users.login = function (usuario, contrasena, result) {
             return;
         }else {
             console.log('Connected to database as id ' );
-            const sql = 'SELECT * FROM usuario WHERE usuario = ? AND contrasena = ?'; // Consulta SQL para obtener un usuario por su nombre y contraseña
-            connection.query(sql, [usuario, contrasena], function (err, datos) { // Ejecuta la query
-                if (err) { // Si hay error
-                    result(err, null) //Envia el error sin los datos
-                } else { //Si no hay error
-                    result(null, datos) //Envia los datos sin el error
+            const sql = 'SELECT * FROM usuario WHERE usuario = ?';
+            connection.query(sql, usuario, function (err, datos) {
+                if (err) {
+                    result(err, null)
+                } else {
+                    // Return null if no user found, otherwise return first user
+                    result(null, datos.length > 0 ? datos[0] : null)
                 }
             })
 
-            connection.end((err) => { // Cierra la conexión
-                if (err) { // Si hay un error
-                    console.log("Error al desconectar de MySQL. Desc: " + err) //Hace un console log de error
+            connection.end((err) => {
+                if (err) {
+                    console.log("Error al desconectar de MySQL. Desc: " + err)
                     return
-                } else { //Si no hay un error
-                    console.log("Conexión MySQL cerrada") //Hace un console log de que se ha cerrado la conexion
+                } else {
+                    console.log("Conexión MySQL cerrada")
                 }
             })
         }

@@ -1,0 +1,105 @@
+.edit-form-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.edit-form-header {
+  background-color: #1a1f2e;
+  color: white;
+  padding: 15px;
+  border-radius: 4px 4px 0 0;
+  margin: -20px -20px 20px -20px;
+}
+
+/* Contenedores de elementos */
+.users-container, 
+.tags-container {
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  margin-bottom: 15px;
+}
+
+/* Badges para usuarios y etiquetas */
+.tag-badge {
+  background-color: #40E0D0;
+  color: white;
+  padding: 5px 10px;
+  margin: 2px;
+  border-radius: 15px;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.user-badge {
+  background-color: #1a1f2e;
+  color: white;
+  padding: 5px 10px;
+  margin: 2px;
+  border-radius: 15px;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tag-badge:hover,
+.user-badge:hover {
+  background-color: #ff4444;
+  transform: scale(1.05);
+}
+
+/* Botón de submit */
+.submit-button {
+  background-color: #1a1f2e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #40E0D0;
+  transform: scale(1.02);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tag-badge, 
+.user-badge {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Loading state */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Input groups */
+.input-group {
+  margin-bottom: 10px;
+}
+
+.input-group .form-control {
+  border-right: none;
+}
+
+.input-group .btn {
+  border-left: none;
+}

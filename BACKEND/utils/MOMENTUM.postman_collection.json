@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"correo\": \"juan@example.com\",\r\n  \"usuario\": \"juanp\",\r\n  \"contrasena\": \"mipassword123\"\r\n}",
+							"raw": "{\r\n  \"nombre\": \"Superadmin\",\r\n  \"correo\": \"admin@admin.com\",\r\n  \"usuario\": \"user\",\r\n  \"contrasena\": \"y7h%IE89fg\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -47,7 +47,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"usuario\": \"juanp\",\r\n  \"contrasena\": \"mipassword123\"\r\n}",
+							"raw": "{\r\n  \"usuario\": \"Superadmin\",\r\n  \"contrasena\": \"y7h%IE89fg\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -74,16 +74,6 @@
 				{
 					"name": "Obtener Users",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6W10sImlhdCI6MTc0NDk5NDE1OSwiZXhwIjoxNzQ0OTk1OTU5fQ.ChTbRCG71ISULHIOBDStFNttsTvhBCS_QN5NpjTN0JQ",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -105,20 +95,10 @@
 				{
 					"name": "Obtener User Por id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6W10sImlhdCI6MTc0NDk5NDE1OSwiZXhwIjoxNzQ0OTk1OTU5fQ.ChTbRCG71ISULHIOBDStFNttsTvhBCS_QN5NpjTN0JQ",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/1",
+							"raw": "http://localhost:3000/api/v1/users/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -128,7 +108,7 @@
 								"api",
 								"v1",
 								"users",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -137,21 +117,11 @@
 				{
 					"name": "Actualizar usuario por id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6W10sImlhdCI6MTc0NDk5NDE1OSwiZXhwIjoxNzQ0OTk1OTU5fQ.ChTbRCG71ISULHIOBDStFNttsTvhBCS_QN5NpjTN0JQ",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"nombre\": \"Juan Pérez Actualizado\"\r\n}",
+							"raw": "{\r\n        \"nombre\": \"Superadmin\",\r\n        \"correo\": \"admin@admin.com\",\r\n        \"usuario\": \"Superadmin\",\r\n        \"rol\": \"SUPERADMIN\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -159,7 +129,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/1",
+							"raw": "http://localhost:3000/api/v1/users/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -169,7 +139,7 @@
 								"api",
 								"v1",
 								"users",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -178,16 +148,6 @@
 				{
 					"name": "Borrar Usuario",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6W10sImlhdCI6MTc0NDk5NDE1OSwiZXhwIjoxNzQ0OTk1OTU5fQ.ChTbRCG71ISULHIOBDStFNttsTvhBCS_QN5NpjTN0JQ",
-									"type": "string"
-								}
-							]
-						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
@@ -215,16 +175,6 @@
 				{
 					"name": "Obtener Tareas",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6W10sImlhdCI6MTc0NDk5OTYyNiwiZXhwIjoxNzQ1MDAxNDI2fQ.sxZAHaaZQfERVqf5--HS7mei1g9LV_cBNVTtCFCyxf8",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -246,16 +196,6 @@
 				{
 					"name": "Obtener Tarea Por ID",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6W10sImlhdCI6MTc0NDk5OTYyNiwiZXhwIjoxNzQ1MDAxNDI2fQ.sxZAHaaZQfERVqf5--HS7mei1g9LV_cBNVTtCFCyxf8",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -278,21 +218,11 @@
 				{
 					"name": "Crear Tarea",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6W10sImlhdCI6MTc0NDk5OTYyNiwiZXhwIjoxNzQ1MDAxNDI2fQ.sxZAHaaZQfERVqf5--HS7mei1g9LV_cBNVTtCFCyxf8",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"titulo\": \"Hola informe\",\r\n  \"descripcion\": \"Redactar el informe mensual para el equipo\",\r\n  \"estado\": \"pendiente\",\r\n  \"prioridad\": \"alta\",\r\n  \"id_creador\": 2\r\n}",
+							"raw": "{\r\n  \"titulo\": \"Hola informe\",\r\n  \"descripcion\": \"Redactar el informe mensual para el equipo\",\r\n  \"estado\": \"pendiente\",\r\n  \"prioridad\": \"alta\",\r\n  \"id_creador\": 5\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -318,16 +248,6 @@
 				{
 					"name": "Actualizar tarea por id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6W10sImlhdCI6MTc0NDk5OTYyNiwiZXhwIjoxNzQ1MDAxNDI2fQ.sxZAHaaZQfERVqf5--HS7mei1g9LV_cBNVTtCFCyxf8",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -359,16 +279,6 @@
 				{
 					"name": "New Request",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6W10sImlhdCI6MTc0NDk5OTYyNiwiZXhwIjoxNzQ1MDAxNDI2fQ.sxZAHaaZQfERVqf5--HS7mei1g9LV_cBNVTtCFCyxf8",
-									"type": "string"
-								}
-							]
-						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
